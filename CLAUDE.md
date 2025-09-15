@@ -45,11 +45,13 @@ src/
 
 ### Additional Directories (Created as needed)
 - `components/` - Reusable React components
-- `components/ui/` - shadcn/ui components
+  - `ui/` - shadcn/ui components (auto-managed by CLI)
+  - `guestbook-form.tsx` - 방명록 폼 컴포넌트
+  - `guestbook-list.tsx` - 방명록 목록 컴포넌트
 - `hooks/` - Custom React hooks
 - `components-demo/` - Demo components showcase page
 
-Components are organized using shadcn/ui conventions with path aliases defined in `components.json`
+Components are organized using shadcn/ui conventions with simple flat structure for project-specific components
 
 ## Tech Stack
 
