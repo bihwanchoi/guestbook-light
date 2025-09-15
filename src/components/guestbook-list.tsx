@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { getAllEntries } from '@/lib/guestbook';
+import { LikeButton } from './like-button';
 
 function formatDate(date: Date): string {
   return new Intl.DateTimeFormat('ko-KR', {
@@ -34,7 +35,10 @@ export function GuestbookList() {
         <Card key={entry.id}>
           <CardHeader>
             <CardTitle className="text-base flex justify-between items-center">
-              <span>{entry.name}</span>
+              <div className="flex items-center gap-3">
+                <span>{entry.name}</span>
+                <LikeButton entryId={entry.id} initialLikes={entry.likes} />
+              </div>
               <span className="text-sm font-normal text-muted-foreground">
                 {formatDate(entry.createdAt)}
               </span>

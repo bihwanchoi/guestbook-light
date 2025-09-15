@@ -1,7 +1,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { createEntry } from '@/lib/guestbook';
+import { createEntry, incrementLikes } from '@/lib/guestbook';
 import { GuestbookFormData } from '@/types/guestbook';
 
 export async function addGuestbookEntry(formData: FormData) {
@@ -23,4 +23,12 @@ export async function addGuestbookEntry(formData: FormData) {
 
   createEntry(guestbookData);
   revalidatePath('/');
+}
+
+export async function likeGuestbookEntry(entryId: string) {
+  const success = incrementLikes(entryId);
+  if (success) {
+    revalidatePath('/');
+  }
+  return success;
 }
