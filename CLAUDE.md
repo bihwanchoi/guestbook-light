@@ -67,6 +67,11 @@ Components are organized using shadcn/ui conventions with simple flat structure 
 - **class-variance-authority 0.7.1** - Component variant styling
 - **clsx 2.1.1** & **tailwind-merge 3.3.1** - Conditional className utilities
 
+### Database & Analytics
+- **Supabase** - Backend as a Service with PostgreSQL database
+- **@supabase/supabase-js 2.57.4** - Supabase client library
+- **@vercel/analytics 1.5.0** - Vercel Analytics for web analytics
+
 ### Development Tools
 - **Turbopack** - Fast bundler for development and build
 - **ESLint 9** - Code linting with Next.js config
