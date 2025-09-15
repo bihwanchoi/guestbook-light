@@ -1,8 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { getAllEntries } from '@/lib/guestbook';
+import { getGuestbookEntries } from '@/lib/guestbook';
 import { LikeButton } from './like-button';
 
-function formatDate(date: Date): string {
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
   return new Intl.DateTimeFormat('ko-KR', {
     year: 'numeric',
     month: 'long',
@@ -13,8 +14,8 @@ function formatDate(date: Date): string {
   }).format(date);
 }
 
-export function GuestbookList() {
-  const entries = getAllEntries();
+export async function GuestbookList() {
+  const entries = await getGuestbookEntries();
 
   if (entries.length === 0) {
     return (
@@ -40,7 +41,7 @@ export function GuestbookList() {
                 <LikeButton entryId={entry.id} initialLikes={entry.likes} />
               </div>
               <span className="text-sm font-normal text-muted-foreground">
-                {formatDate(entry.createdAt)}
+                {formatDate(entry.created_at || '')}
               </span>
             </CardTitle>
           </CardHeader>

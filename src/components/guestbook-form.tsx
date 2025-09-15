@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { addGuestbookEntry } from '@/app/actions';
+import { createGuestbookEntry } from '@/lib/guestbook';
 
 export function GuestbookForm() {
   const [name, setName] = useState('');
@@ -47,7 +47,7 @@ export function GuestbookForm() {
       formData.append('name', name.trim());
       formData.append('message', message.trim());
 
-      await addGuestbookEntry(formData);
+      await createGuestbookEntry(formData);
 
       setName('');
       setMessage('');

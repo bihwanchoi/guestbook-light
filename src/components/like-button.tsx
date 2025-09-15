@@ -14,24 +14,26 @@
 import { useState, useTransition } from 'react';
 import { Button } from '@/components/ui/button';
 import { Heart } from 'lucide-react';
-import { likeGuestbookEntry } from '@/app/actions';
+import { incrementLikes } from '@/lib/guestbook';
 
 interface LikeButtonProps {
   entryId: string;
-  initialLikes: number;
+  initialLikes: number | null;
 }
 
 export function LikeButton({ entryId, initialLikes }: LikeButtonProps) {
-  const [likes, setLikes] = useState(initialLikes);
+  const [likes, setLikes] = useState(initialLikes || 0);
   const [isPending, startTransition] = useTransition();
 
   const handleLike = () => {
     setLikes(prev => prev + 1);
 
     startTransition(async () => {
-      const success = await likeGuestbookEntry(entryId);
-      if (!success) {
+      try {
+        await incrementLikes(entryId);
+      } catch (error) {
         setLikes(prev => prev - 1);
+        console.error('좋아요 업데이트 실패:', error);
       }
     });
   };
