@@ -101,7 +101,7 @@ export function GuestbookForm() {
             disabled={isSubmitting}
             className="w-full"
           >
-            {isSubmitting ? '등록 중...' : '방명록 등록'}
+            {isSubmitting ? '등록 중...' : '등록'}
           </Button>
         </form>
       </CardContent>
